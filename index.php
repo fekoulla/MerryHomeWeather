@@ -1,6 +1,3 @@
-<!-- Voici les méthodes pour l'utilisation de l'objet JSON en Php : -->
-
-
 
 <?php
 
