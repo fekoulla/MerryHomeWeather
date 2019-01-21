@@ -77,3 +77,23 @@ Prévisions :
 Prévisions J1           :           fcst_day_1->XXX
 Prévisions J2           :           fcst_day_2->XXX
 Prévisions J3           :           fcst_day_3->XXX
+
+
+
+
+
+
+Tâches (TODO LIST) : 
+
+- Apprentissage de l’API prevision-meteo + tests
+- Mise en place de OpenStreetMap (Vue + marker personnalisé)
+- Météo en temps réel, température, vent, etc.
+- Recherche météo par Ville
+- Recherche météo par latitude
+- Recherche météo par Code Postal
+- Définition des expressions pour la recherche météo
+- Mise en place du front
+- Tests fonctionnels
+- Schémas de tests
+- Mise en production
+
