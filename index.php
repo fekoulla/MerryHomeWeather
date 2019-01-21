@@ -1,9 +1,15 @@
-
+<form action="index.php" method="post">
+Nom de la ville: <input type="text" name="ville"><br>
+<input type="submit">
+</form>
 
 <?php
 
-$json = file_get_contents('http://www.prevision-meteo.ch/services/json/antibes');
-$json = json_decode($json);
+if (isset($_POST['ville'])){
+    $json = file_get_contents('http://www.prevision-meteo.ch/services/json/'.$_POST["ville"]);
+    $json = json_decode($json);
+}
+
 
 ?>
 
@@ -13,11 +19,9 @@ $json = json_decode($json);
 
 <?php
 
-echo "Il fait " .$json->current_condition->tmp. " degrés à " .$json->city_info->name. ".";
-echo "<br/>";
-echo "La vitesse du vent est de ". $json->current_condition->wnd_spd . " km/h.";
-// echo
-// $json->current_condition->wnd_dir
+echo "Il fait " .$json->current_condition->tmp. " degré(s) à " .$json->city_info->name. ".<br/>";
+echo "La vitesse du vent est de ". $json->current_condition->wnd_spd . " km/h.<br/>";
+echo "Le vent vient du ". $json->current_condition->wnd_dir . ".<br/>";
 
  ?>
 
