@@ -46,15 +46,17 @@
 
         <h2>Recherche par ville :</h2>
         <form action="index.php" method="post">
-        Nom de la ville: <input type="text" name="ville" required><br>
+        Nom de la ville: <input type="text" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville']; ?>" required><br>
+		Facultatif - Heure par heure: <input type="text" name="heure"><br>
         <input type="submit">
         </form>
 
         <br/>
         <h2>Recherche par géolocalisation :</h2>
         <form action="index.php" method="post">
-        Latitude : <input type="text" name="latitude" required><br>
-        Longitude : <input type="text" name="longitude" required><br>
+        Latitude : <input type="text" name="latitude" value="<?php if(isset($_POST['latitude'])) echo $_POST['latitude']; ?>" required><br>
+        Longitude : <input type="text" name="longitude" value="<?php if(isset($_POST['longitude'])) echo $_POST['longitude']; ?>" required><br>
+		Facultatif - Heure par heure: <input type="text" name="heure"><br>
         <input type="submit">
         </form>
 
@@ -73,23 +75,38 @@
                 $json = json_decode($json);
             }
 
-            echo "<br/><br/>";
+			// Si le nom de la ville est mal orthographié, ou si la latitude et la longitude sont foireuses, on renvoie une erreur
+			if(!array_key_exists('errors', $json))
+			{
+				echo "<br/><br/>";
 
-            if (isset($_POST['ville']))
-                echo "<h2>Prévisions complètes pour " . $json->city_info->name . " : </h2><br/>";
-            else
-                echo "<h2>Prévisions complètes pour la géolocalisation lat = " . $json->city_info->latitude . ",
-                      long = " . $json->city_info->longitude . " : </h2><br/>";
+	            if (isset($_POST['ville']))
+	                echo "<h2>Prévisions complètes pour " . $json->city_info->name . " : </h2><br/>";
+	            else
+	                echo "<h2>Prévisions complètes pour la géolocalisation lat = " . $json->city_info->latitude . ",
+	                      long = " . $json->city_info->longitude . " : </h2><br/>";
 
 
-            echo "Conditions de temps actuelles : " . $json->fcst_day_0->condition;
-            echo "<img src='" .$json->current_condition->icon. "'/>";
+	            echo "Conditions de temps actuelles : " . $json->fcst_day_0->condition;
+	            echo "<img src='" .$json->current_condition->icon. "'/>";
 
-            echo "<br/><br/>";
+	            echo "<br/><br/>";
 
-            echo "Il fait " .$json->current_condition->tmp. " degré(s) à " .$json->city_info->name. ".<br/>";
-            echo "La vitesse du vent est de ". $json->current_condition->wnd_spd . " km/h.<br/>";
-            echo "Le vent vient du ". $json->current_condition->wnd_dir . ".<br/>";
+	            echo "Il fait " .$json->current_condition->tmp. " degré(s) à " .$json->city_info->name. ".<br/>";
+	            echo "La vitesse du vent est de ". $json->current_condition->wnd_spd . " km/h.<br/>";
+	            echo "Le vent vient du ". $json->current_condition->wnd_dir . ".<br/>";
+
+
+				// Ce genre de code commenté mon gars
+				// $requete = $json->fcst_day_0->hourly_data;
+				// $array = json_decode(json_encode($requete), True);
+				// echo $array['0H00']['TMP2m'];
+			}
+			else
+			{
+				echo "<h2>Aucun résultat pour cette localisation.";
+			}
+
         }
 
         ?>
