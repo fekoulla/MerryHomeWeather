@@ -9,24 +9,34 @@ class WeatherController {
     postAction(req, res){
         switch(req.params.actionId){
             case "isitsunnydate":
-            case "isitsunnylocation":
-                console.log(req.body.searchValue);
                 var requestUrl="http://www.prevision-meteo.ch/services/json/";
-                requestUrl += parseDataSend(req.body.searchValue);
-                console.log(requestUrl);
-                var wikiReq = request('GET', requestUrl,{cache:'file'});
-                var response = JSON.parse(wikiReq.getBody('utf8'));
-                var textResponse= parseDataResponse(response);
-                if(!textResponse){
+                requestUrl += parseDataSend(req.body.searchLocation);
+                requestUrl = requestUrl.substr(0, requestUrl.length-1);
+                var weatherReq = request('GET', requestUrl,{cache:'file'});
+                var response = JSON.parse(weatherReq.getBody('utf8'));
+
+                if(!response){
                     res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
                 }else{
-                    res.end(JSON.stringify({resultText: textResponse}));
+                    res.end(JSON.stringify({resultText: response}));
+                }
+                break;
+            case "isitsunnylocation":
+                var requestUrl="http://www.prevision-meteo.ch/services/json/";
+                requestUrl += parseDataSend(req.body.searchLocation);
+                requestUrl = requestUrl.substr(0, requestUrl.length-1);
+                var weatherReq = request('GET', requestUrl,{cache:'file'});
+                var response = JSON.parse(weatherReq.getBody('utf8'));
+
+                if(!response){
+                    res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
+                }else{
+                    res.end(JSON.stringify({resultText: response}));
                 }
                 break;
             default:
                 res.end(JSON.stringify({}));
                 break;
-
         }
     }
 }
