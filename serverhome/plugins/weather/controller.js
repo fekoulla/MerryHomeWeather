@@ -32,7 +32,7 @@ class WeatherController {
                   response = response.fcst_day_1;
                 }else if(date == 'Après-demain'){
                   response = response.fcst_day_2;
-                }else{
+                }else if(date == 'Dans Jours'){
                   response = response.fcst_day_3;
                 }
 
