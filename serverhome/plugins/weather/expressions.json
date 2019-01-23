@@ -1,0 +1,4 @@
+{
+    "isitsunnylocation": 	"quel temps fait-il (?P<searchValue>.+\\s?.*\\s?.*)",
+    "isitsunnydate": 	"quel temps fait-il (?P<searchValue>.+\\s?.*\\s?.*)"
+}
