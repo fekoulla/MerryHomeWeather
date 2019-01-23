@@ -15,6 +15,22 @@ class WeatherController {
                 var weatherReq = request('GET', requestUrl,{cache:'file'});
                 var response = JSON.parse(weatherReq.getBody('utf8'));
 
+                //Enlève le _ du searchDate
+                var date = parseDataSend(req.body.searchDate);
+                date = date.substr(0, date.length-1);
+                console.log(response);
+                console.log(date);
+
+                if(date == 'Aujourd\'hui'){
+                  response = response.fcst_day_0;
+                }else if(date == 'Demain'){
+                  response = response.fcst_day_1;
+                }else if(date == 'Après-demain'){
+                  response = response.fcst_day_2;
+                }else{
+                  response = response.fcst_day_3;
+                }
+
                 if(!response){
                     res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
                 }else{
@@ -31,7 +47,7 @@ class WeatherController {
                 if(!response){
                     res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
                 }else{
-                    res.end(JSON.stringify({resultText: response}));
+                    res.end(JSON.stringify({resultText: response.current_condition}));
                 }
                 break;
             default:
