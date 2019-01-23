@@ -94,8 +94,6 @@
 
         ?>
 
-
-
 		<div id="map">
 			<!-- Ici s'affichera la carte -->
 		</div>
