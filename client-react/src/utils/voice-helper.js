@@ -12,7 +12,7 @@ function searchRequest(recognitionText, requests){
                 var data= mapKeysMatches(keys, match);
                 return {"plugin": plugin,
                         "action": action,
-                        "data": data };      
+                        "data": data };
            }
         }
     }

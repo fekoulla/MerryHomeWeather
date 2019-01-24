@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 class VoiceRecognition extends Component {
-    
+
     constructor(props){
         super(props);
         this.state = { expressions: [],
@@ -41,9 +41,9 @@ class VoiceRecognition extends Component {
                 };
             }
         });
-        
+
     }
-    
+
     subscribeServerSays(){
         subscribeToEvent("serversays", function (data){
             var utterThis = new SpeechSynthesisUtterance(data);
@@ -52,7 +52,7 @@ class VoiceRecognition extends Component {
             window.speechSynthesis.speak(utterThis);
         });
     }
-    
+
     sendData(objRequest){
         sendRequest(objRequest.plugin, objRequest.action, objRequest.data).then((data)=>{
             if(data.resultText){
@@ -66,21 +66,23 @@ class VoiceRecognition extends Component {
 
     render() {
         const { startListening, stopListening, browserSupportsSpeechRecognition } = this.props;
-        
+        let logMessages = this.props.listening;
+
         if(!isConfigured()){
             return <div>Configurer le server de merry home ;)</div>;
         }
-        
+
         if (!browserSupportsSpeechRecognition) {
-            return <div>Pour utiliser la reconnaissance vocale, merci d'utiliser google chrome ;)</div>;
+            return <div>Pour utiliser la reconnaissance vocale, merci d utiliser google chrome ;)</div>;
         }
 
         return (
             <div>
                <Glyphicon glyph="comment" className={"voice-icon "+(this.props.listening  ? "listening" : "")} />
-               { this.props.listening  ? 
-                <Button bsStyle="danger" onClick={stopListening}><Glyphicon glyph="stop" /> stop </Button> : 
+               { this.props.listening  ?
+                <Button bsStyle="danger" onClick={stopListening}><Glyphicon glyph="stop" /> stop </Button> :
                 <Button bsStyle="info" onClick={startListening }><Glyphicon glyph="play" /> start </Button> }
+                {logMessages}
             </div>
         );
     };

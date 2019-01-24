@@ -50,7 +50,6 @@ class WeatherController {
 
                 //Enlève le _ du searchDate
                 var date = req.body.searchDate;
-                console.log(date);
 
                 if(date == 'maintenant'){
                   response = response.current_condition;
@@ -69,8 +68,6 @@ class WeatherController {
                 }else{
                   response = "Nous n'avons pas d'informations concernant cette date"
                 }
-
-                console.log(response);
 
                 if(!response){
                     res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
