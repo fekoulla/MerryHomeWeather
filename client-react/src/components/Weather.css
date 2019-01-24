@@ -1,5 +1,30 @@
-.plugin-weather .buttonscontrols button{
-    background: mediumseagreen;
-    border: 1px solid green;
-    color: white;
+.plugin-weather .result{
+    margin: 20px auto;
+    display: inline-block;
+    text-align: left;
+}
+
+
+.plugin-weather .result table > p, .plugin-weather .result table > div {
+    display: block;
+}
+
+.plugin-weather .shortResult{
+    margin: 10px 80px;
+    display: inline-block;
+    text-align: left;
+}
+
+.plugin-weather .shortResult::before {
+    content: open-quote;
+}
+.plugin-weather .shortResult::after {
+    content: close-quote;
+}
+
+
+.thumb.tright {
+    float: right;
+    clear: right;
+    width: auto;
 }
