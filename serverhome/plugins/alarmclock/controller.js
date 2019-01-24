@@ -6,7 +6,6 @@ class AlarmClockController {
             this.io = io;
             alarmClock.setIO(io);
         }
-
         
 	postAction(req, res){
             switch(req.params.actionId){

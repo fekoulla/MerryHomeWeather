@@ -19,25 +19,9 @@ class PluginPage extends React.Component {
     render() {
         let pluginName = this.props.match.params.pluginName;
         let pluginView = this.state.pluginView;
-        let PluginNameView ;
-
-        if(pluginName === "androidtv"){
-            PluginNameView = "Android TV";
-        }
-        else if(pluginName === "cameras"){
-            PluginNameView = "Caméras";
-        }
-        else if(pluginName === "philipshue"){
-            PluginNameView = "Philipshue";
-        }
-        else if(pluginName === "weather"){
-            PluginNameView = "The weather";
-        }
-
-
         return (
             <div>
-                <h3>{PluginNameView}</h3>
+                <h3>{pluginName}</h3>
                 <PluginContent viewInfo={pluginView} pluginName={pluginName} />     
             </div>
         );    

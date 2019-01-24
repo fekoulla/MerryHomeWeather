@@ -1,5 +1,7 @@
 import React from 'react';
 import PluginItem from "./PluginItem"
+import AndroidTV from "./AndroidTV"
+import Wikipedia from "./Wikipedia"
 
 export default function PluginContent(props){
     if(props.viewInfo.type==="listItem"){
@@ -10,6 +12,10 @@ export default function PluginContent(props){
                 ))}  
             </div>
         );
+    }else if(props.viewInfo.type==="AndroidTV"){
+        return <AndroidTV viewInfo={props.viewInfo} pluginName={props.pluginName} />;
+    }else if(props.viewInfo.type==="Wikipedia"){
+        return <Wikipedia />;
     }else{
         return <div></div>;
     }

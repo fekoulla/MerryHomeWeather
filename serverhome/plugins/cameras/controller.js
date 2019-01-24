@@ -1,11 +1,11 @@
 var plugincamera = require("./index");
 
 class CamerasController {
-        
+
     constructor(io){
         plugincamera.setIO(io);
         //plugincamera.init();
-        io.sockets.on('connection', function(socket){ 
+        io.sockets.on('connection', function(socket){
             for(var i in plugincamera.cameras){
                 var camera= plugincamera.cameras[i];
                 socket.on(camera.name+'.start', function(name){
@@ -20,7 +20,7 @@ class CamerasController {
     }
 
     getView(req, res){
-        var dataView = { 
+        var dataView = {
             "type" : "listItem",
             "itemType" : "PluginCameraItem",
             "items" : []
@@ -35,7 +35,7 @@ class CamerasController {
     }
 
     postAction(req, res){
-       res.end(JSON.stringify({})); 
+       res.end(JSON.stringify({}));
     }
 }
 

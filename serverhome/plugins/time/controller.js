@@ -2,8 +2,7 @@ class TimeController {
 	
         constructor(io){
             this.io = io;
-		}
-		
+        }
         
 	postAction(req, res){
 		var now = new Date();
