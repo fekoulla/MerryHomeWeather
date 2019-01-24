@@ -24,9 +24,6 @@ class WeatherController {
 
                 //Enlève le _ du searchDate
                 var date = req.body.searchDate;
-                console.log(response);
-                console.log(date);
-                console.log(req.body.searchDate);
 
                 if(date == 'maintenant'){
                   response = response.current_condition;
@@ -38,8 +35,12 @@ class WeatherController {
                   response = response.fcst_day_2;
                 }else if(date == 'dans 3 jours'){
                   response = response.fcst_day_3;
+                }else if(date == 'dans trois jours'){
+                  response = response.fcst_day_3;
                 }else if(date == 'dans 4 jours'){
                   response = response.fcst_day_4;
+                }else{
+                  response = "Nous n'avons pas d'informations concernant cette date"
                 }
 
                 if(!response){
@@ -53,29 +54,6 @@ class WeatherController {
                 break;
         }
     }
-}
-
-function parseDataResponse(response){
-	if(response){
-		if(response.query){
-			for(var i in response.query.pages){
-				if(response.query.pages[i].extract){
-					if(response.query.pages[i].extract.indexOf('\n')!==-1){
-						var textResponse= response.query.pages[i].extract.substr(0, response.query.pages[i].extract.indexOf('\n'));
-					}else{
-						var textResponse= response.query.pages[i].extract;
-					}
-					if(textResponse.length > 300){
-							textResponse= textResponse.substr(0, textResponse.indexOf("."));
-					}
-					console.log(textResponse);
-					return textResponse;
-				}
-			}
-		}
-		console.log(response);
-	}
-	return false;
 }
 
 module.exports = WeatherController;
