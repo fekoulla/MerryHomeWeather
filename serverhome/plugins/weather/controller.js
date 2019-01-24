@@ -24,9 +24,7 @@ class WeatherController {
 
                 //Enlève le _ du searchDate
                 var date = req.body.searchDate;
-                console.log(response);
                 console.log(date);
-                console.log(req.body.searchDate);
 
                 if(date == 'maintenant'){
                   response = response.current_condition;
@@ -38,9 +36,15 @@ class WeatherController {
                   response = response.fcst_day_2;
                 }else if(date == 'dans 3 jours'){
                   response = response.fcst_day_3;
+                }else if(date == 'dans trois jours'){
+                  response = response.fcst_day_3;
                 }else if(date == 'dans 4 jours'){
                   response = response.fcst_day_4;
+                }else{
+                  response = "Nous n'avons pas d'informations concernant cette date"
                 }
+
+                console.log(response);
 
                 if(!response){
                     res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
