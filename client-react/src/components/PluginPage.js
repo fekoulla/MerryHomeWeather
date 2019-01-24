@@ -37,7 +37,7 @@ class PluginPage extends React.Component {
 
         return (
             <div>
-                <h3>{PluginNameView}</h3>
+                <h3 style={{color:"rgb(67, 94, 126)"}} >{PluginNameView}</h3>
                 <PluginContent viewInfo={pluginView} pluginName={pluginName} />     
             </div>
         );    

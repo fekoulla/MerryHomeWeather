@@ -34,7 +34,7 @@ class ConfigServerPage extends React.Component {
             <div className="configuration-form">
                 <Form horizontal onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formHorizontalServer">
-                    <Col componentClass={ControlLabel} sm={2}>
+                    <Col componentClass={ControlLabel} sm={2} style={{color:"rgb(67, 94, 126)"}}>
                         Server
                     </Col>
                   <Col sm={10}>
@@ -42,7 +42,7 @@ class ConfigServerPage extends React.Component {
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontalUsername">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={2} style={{color:"rgb(67, 94, 126)"}}>
                     Username
                   </Col>
                   <Col sm={10}>
@@ -50,7 +50,7 @@ class ConfigServerPage extends React.Component {
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontalPassword">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={2} style={{color:"rgb(67, 94, 126)"}}>
                     Password
                   </Col>
                   <Col sm={10}>
@@ -59,7 +59,7 @@ class ConfigServerPage extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <Col smOffset={2} sm={10}>
-                    <Button type="submit">Save</Button>
+                    <Button type="submit" style={{color:"rgb(67, 94, 126)"}}>Save</Button>
                   </Col>
                 </FormGroup>
               </Form>;

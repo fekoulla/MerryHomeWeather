@@ -25,8 +25,8 @@
     font-size: 50px;
     display: block;
     margin: 10px auto;
-    color: #5bc0de;
-    border-color: #46b8da;
+    color: rgb(80, 101, 126);
+    border-color: rgb(67, 94, 126);
 }
 
 .listening{
