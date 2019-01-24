@@ -21,10 +21,7 @@ class PluginPage extends React.Component {
         let pluginView = this.state.pluginView;
         let PluginNameView ;
 
-        if(pluginName === "alarmclock"){
-            PluginNameView = "Alarm clock";
-        }
-        else if(pluginName === "androidtv"){
+        if(pluginName === "androidtv"){
             PluginNameView = "Android TV";
         }
         else if(pluginName === "cameras"){
@@ -33,15 +30,10 @@ class PluginPage extends React.Component {
         else if(pluginName === "philipshue"){
             PluginNameView = "Philipshue";
         }
-        else if(pluginName === "time"){
-            PluginNameView = "Time";
-        }
         else if(pluginName === "weather"){
             PluginNameView = "The weather";
         }
-        else if(pluginName === "wikipedia"){
-            PluginNameView = "Wiképédia";
-        }
+
 
         return (
             <div>

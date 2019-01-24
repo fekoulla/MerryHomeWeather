@@ -4,10 +4,6 @@ class TimeController {
             this.io = io;
 		}
 		
-		getView(req, res){
-			var dataView = require("./view");
-			res.end(JSON.stringify(dataView));
-		}
         
 	postAction(req, res){
 		var now = new Date();
