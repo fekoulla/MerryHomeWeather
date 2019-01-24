@@ -6,10 +6,7 @@ class WikipediaController {
             this.io = io;
 	}
 	
-	getView(req, res){
-        var dataView = require("./view");
-        res.end(JSON.stringify(dataView));
-    }
+
     
     postAction(req, res){
         switch(req.params.actionId){

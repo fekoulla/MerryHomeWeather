@@ -1,4 +1,5 @@
 const request = require('sync-request');
+//var pluginweather = require("./index");
 
 class WeatherController {
 
@@ -9,6 +10,8 @@ class WeatherController {
     getView(req, res){
         var dataView = require("./view");
         res.end(JSON.stringify(dataView));
+        // var path = require("path");
+        // res.sendFile(path.join(__dirname, '../client-react/src/', 'view.js'));
     }
 
     postAction(req, res){
