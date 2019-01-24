@@ -1,5 +1,4 @@
 const request = require('sync-request');
-//var pluginweather = require("./index");
 
 class WeatherController {
 
@@ -16,27 +15,31 @@ class WeatherController {
 
     postAction(req, res){
         switch(req.params.actionId){
+            case "isitsunnydate2":
             case "isitsunnydate":
                 var requestUrl="http://www.prevision-meteo.ch/services/json/";
-                requestUrl += parseDataSend(req.body.searchLocation);
-                requestUrl = requestUrl.substr(0, requestUrl.length-1);
+                requestUrl += req.body.searchLocation;
                 var weatherReq = request('GET', requestUrl,{cache:'file'});
                 var response = JSON.parse(weatherReq.getBody('utf8'));
 
                 //Enlève le _ du searchDate
-                var date = parseDataSend(req.body.searchDate);
-                date = date.substr(0, date.length-1);
+                var date = req.body.searchDate;
                 console.log(response);
                 console.log(date);
+                console.log(req.body.searchDate);
 
-                if(date == 'Aujourd\'hui'){
+                if(date == 'maintenant'){
+                  response = response.current_condition;
+                }else if(date == 'aujourd\'hui'){
                   response = response.fcst_day_0;
-                }else if(date == 'Demain'){
+                }else if(date == 'demain'){
                   response = response.fcst_day_1;
-                }else if(date == 'Après-demain'){
+                }else if(date == 'après-demain'){
                   response = response.fcst_day_2;
-                }else if(date == 'Dans Jours'){
+                }else if(date == 'dans 3 jours'){
                   response = response.fcst_day_3;
+                }else if(date == 'dans 4 jours'){
+                  response = response.fcst_day_4;
                 }
 
                 if(!response){
@@ -45,41 +48,11 @@ class WeatherController {
                     res.end(JSON.stringify({resultText: response}));
                 }
                 break;
-            case "isitsunnylocation":
-                var requestUrl="http://www.prevision-meteo.ch/services/json/";
-                requestUrl += parseDataSend(req.body.searchLocation);
-                requestUrl = requestUrl.substr(0, requestUrl.length-1);
-                var weatherReq = request('GET', requestUrl,{cache:'file'});
-                var response = JSON.parse(weatherReq.getBody('utf8'));
-
-                if(!response){
-                    res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
-                }else{
-                    res.end(JSON.stringify({resultText: response.current_condition}));
-                }
-                break;
             default:
                 res.end(JSON.stringify({}));
                 break;
         }
     }
-}
-
-function parseDataSend(data){
-	if(data.indexOf(" ")){
-		var pieces = data.split(" ");
-		data="";
-		for ( var i in pieces){
-			if(pieces[i].length>3){
-				data += pieces[i].charAt(0).toUpperCase();
-				data += pieces[i].substr(1);
-				if(i!==pieces.length - 1){
-					data+="_";
-				}
-			}
-		}
-	}
-	return data;
 }
 
 function parseDataResponse(response){
