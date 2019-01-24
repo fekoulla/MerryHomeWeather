@@ -4,7 +4,7 @@ import './AndroidTV.css';
 
 class AndroidTV extends React.Component {
     render() {
-        var props = this.props; 
+        var props = this.props;
         return (
             <div className='plugincontent plugin-androidtv'>
                 <div className="buttonscontrols">
@@ -17,7 +17,7 @@ class AndroidTV extends React.Component {
                     <PluginActionButton key={index} itemType={props.viewInfo.itemType} pluginName={props.pluginName} name={item.name} icon={item.icon} action={item.action} data={item.data} />
                 ))}
                 </div>
-            </div>  
+            </div>
         );
     }
 };

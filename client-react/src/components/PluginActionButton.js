@@ -12,10 +12,11 @@ class PluginActionButton extends React.Component {
     }
     
     render() {
-        var buttonContent= this.props.icon ? <Glyphicon glyph={this.props.icon} /> : <span>{this.props.name}</span>;
+        var buttonContent= this.props.icon ? <Glyphicon glyph={this.props.icon} style={{color:"rgb(67, 94, 126)"}} /> : <span style={{color:"rgb(67, 94, 126)"}}>{this.props.name}</span>;
         return (
             <Button 
                   className="btn btn-default"
+                  style={{color:"rgb(67, 94, 126)"}}
                   bsStyle="info"
                   onClick={this.handleClick.bind(this)}>
                   {buttonContent}
