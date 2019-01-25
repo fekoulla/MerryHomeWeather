@@ -21,6 +21,7 @@ class Weather extends React.Component {
       super(props);
       this.state = { searchValue: "",
                      shortResult: "",
+                     shortResultCity: "",
                      expressions:[],
                      isTable : false,
                      searchResult: null };
@@ -48,7 +49,8 @@ class Weather extends React.Component {
               console.log({"response":data.resultText});
               window.speechSynthesis.speak(utterThis);
               self.setState({
-                  shortResult: data.resultText
+                  shortResult: data.resultText,
+                  shortResultCity: data.resultCity
               });
           }
       });
@@ -97,8 +99,9 @@ class Weather extends React.Component {
                 var utterThis = new SpeechSynthesisUtterance(objRequest.data.searchLocation + ", " + objRequest.data.searchDate +", " + data.resultText.day_long + data.resultText.date + ', il y aura des,' + data.resultText.condition + ', et niveau températures, il fera entre' + data.resultText.tmin + ' et ' + data.resultText.tmax + ' degrés');
               }
               utterThis.lang = 'fr-FR';
-              console.log({"response":data.resultText});
+              console.log({"response":data.resultCity});
               this.state.shortResult = data.resultText;
+              this.state.shortCityInfo = data.resultCity;
               window.speechSynthesis.speak(utterThis);
           }
       });
@@ -119,6 +122,9 @@ class Weather extends React.Component {
     if (!browserSupportsSpeechRecognition) {
         return <div>Pour utiliser la reconnaissance vocale, merci d utiliser google chrome ;)</div>;
     }
+    
+console.log(this.state.shortResultCity);
+console.log(this.state.shortResult);
 
       return (
           <div className='plugincontent plugin-weather'>

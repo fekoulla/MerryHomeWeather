@@ -47,7 +47,7 @@ class WeatherController {
                 requestUrl += req.body.searchLocation;
                 var weatherReq = request('GET', requestUrl,{cache:'file'});
                 var response = JSON.parse(weatherReq.getBody('utf8'));
-
+                var city_info = response.city_info;
                 //Enlève le _ du searchDate
                 var date = req.body.searchDate;
 
@@ -72,7 +72,7 @@ class WeatherController {
                 if(!response){
                     res.end(JSON.stringify({resultText: "je n'ai pas d'informations"}));
                 }else{
-                    res.end(JSON.stringify({resultText: response}));
+                    res.end(JSON.stringify({resultText: response, resultCity: city_info}));
                 }
                 break;
             default:
