@@ -28,3 +28,7 @@
     clear: right;
     width: auto;
 }
+
+ul {
+  list-style:none;
+}

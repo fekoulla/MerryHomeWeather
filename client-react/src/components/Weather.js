@@ -105,6 +105,10 @@ class Weather extends React.Component {
   }
 
   render() {
+    var table = this.state.shortResult ? this.state.shortResult.hourly_data : [];
+    var hoursList = Object.keys(table).map((hour) =>
+      <li>{hour} : {table[hour].CONDITION} <img src={table[hour].ICON} alt=''/></li>
+    );
     const { startListening, stopListening, browserSupportsSpeechRecognition } = this.props;
     let logMessages = this.props.listening;
 
@@ -142,6 +146,9 @@ class Weather extends React.Component {
                 {this.state.shortResult.condition}
                 <img src={this.state.shortResult.icon} alt=''/>
               </div>
+              <ul>
+                {hoursList}
+              </ul>
           </div>
       );
   }
