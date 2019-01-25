@@ -1,11 +1,11 @@
-import React, { PropTypes, Component } from 'react'
+import React from 'react'
 import {isConfigured} from '../utils/authservice'
-import SpeechRecognition from 'react-speech-recognition'
 import { Form, FormGroup,FormControl, ControlLabel, Button, Glyphicon } from 'react-bootstrap'
-import {subscribeToEvent, emitEvent, sendRequest, getExpressions} from '../utils/serverhome-api'
+import {emitEvent, sendRequest, getExpressions} from '../utils/serverhome-api'
 import {searchRequest} from '../utils/voice-helper'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import VoiceRecognition from './VoiceRecognition'
 import './Weather.css';
-
 
 class Weather extends React.Component {
 
@@ -58,11 +58,6 @@ class Weather extends React.Component {
   }
 
   render() {
-      var result = this.state.searchResult ?
-                      (this.state.isTable ?
-                      <table dangerouslySetInnerHTML={{ __html: this.state.searchResult }} /> :
-                      <div dangerouslySetInnerHTML={{ __html: this.state.searchResult }} />)
-                  : "";
       return (
           <div className='plugincontent plugin-weather'>
               <Form onSubmit={this.handleSubmit} inline>
@@ -72,11 +67,17 @@ class Weather extends React.Component {
                   </FormGroup>{' '}
                   <Button type="submit"><Glyphicon glyph="search" /> </Button>
               </Form>
+              <Router>
+                  <div>
+                      <Route exact path="/" component={VoiceRecognition}/>
+                  </div>
+              </Router>
               <div className="shortResult">
-                  <cite>{this.state.shortResult.condition}</cite>
+                  <cite>{this.state.shortResult.day_long} {this.state.shortResult.date}</cite>
               </div>
               <div className="result">
-                  {this.state.shortResult.condition}
+                {this.state.shortResult.condition}
+                <img src={this.state.shortResult.icon} alt=''/>
               </div>
           </div>
       );
