@@ -123,8 +123,9 @@ class Weather extends React.Component {
         return <div>Pour utiliser la reconnaissance vocale, merci d utiliser google chrome ;)</div>;
     }
     
-console.log(this.state.shortResultCity);
-console.log(this.state.shortResult);
+    var latitude = this.state.shortResultCity ? this.state.shortResultCity.latitude : 48.8290;
+    var longitude = this.state.shortResultCity ? this.state.shortResultCity.longitude : 2.3251;
+    console.log(this.state.shortResult);
 
       return (
           <div className='plugincontent plugin-weather'>
@@ -151,6 +152,9 @@ console.log(this.state.shortResult);
               <div className="result">
                 {this.state.shortResult.condition}
                 <img src={this.state.shortResult.icon} alt=''/>
+              </div>
+              <div>
+              <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=2.301163673400879%2C48.820484866660514%2C2.349057197570801%2C48.83749229606369&layer=mapnik&marker=48.8290%2C2.3251"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat={latitude}&mlon={longitude}#map=15/48.8290/2.3251">Afficher une carte plus grande</a></small>
               </div>
               <ul>
                 {hoursList}
