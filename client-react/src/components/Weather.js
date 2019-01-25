@@ -98,6 +98,7 @@ class Weather extends React.Component {
               }
               utterThis.lang = 'fr-FR';
               console.log({"response":data.resultText});
+              this.state.shortResult = data.resultText;
               window.speechSynthesis.speak(utterThis);
           }
       });
